@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>‘display’ 过渡实现</title>
+    <style>
+        /**
+            ‘display’ 实现过渡动画
+            其实display是不能出现动画的，所以标题+了引号
+            怎么才能有过渡？
+            有数字的变化，例如透明度，从0-1.
+            初始化有渲染展示的
+            在transition里面包含的属性
+
+        **/
+
+        #app{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: none;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <button id="test">测试</button>
+</body>
+<script>
+    test.onclick = function(){
+        const app = document.querySelector('#app')
+        console.log(app, 'app')
+        // dom节点此时并没有更新，js解析引擎是聪明的，它发现你后面马上有代码要修改dom节点，会先存入队列中集中一次性操作
+        app.style.display = 'block'
+        // 为什么会出现动画了呢？
+        // 因为我读取dom的这些特殊属性时，浏览器就会强制清空渲染队列一次，让我拿到最新的值。
+        // 也就是说读取的时候，其实已经是display为"block"了，因此。我们出现了过渡动画
+        // 当我们执行了app.offsetHeight这行代码时候，发现我们需要读取dom节点的属性，浏览器害怕现在队列中没有执行的操作会让你读取到不正确的值引发BUG，于是就会清空渲染队列并且执行，让你拿到最精确/新的值
+        const height = app.offsetHeight
+        app.style.transform = 'translateX(200px)'
+       
+    }
+    /**
+     * 当你请求向浏览器请求一些 style信息的时候，就会让浏览器flush队列
+     * offsetTop, offsetLeft, offsetWidth, offsetHeight
+     * scrollTop/Left/Width/Height
+     * clientTop/Left/Width/Height
+     * width,height
+     * /
+</script>
+</html>
