@@ -17,3 +17,7 @@ Object.keys(obj) // ["c", "a", "b"]
 // 如果属性名的类型是Number，那么Object.keys返回值是按照key从小到大排序
 // 如果属性名的类型是String，那么Object.keys返回值是按照属性被创建的时间升序排序。
 // 如果属性名的类型是Symbol，那么逻辑同String相同
+// 
+
+
+// 当Object.keys被调用时背后发生了什么
