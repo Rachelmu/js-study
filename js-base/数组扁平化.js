@@ -9,3 +9,35 @@ const flatten = list => [].concat(...list)
 const flatten = list => list.reduce( (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), [])
 
 // 在 ES2019 之后，可通过 「Array.prototype.flat」 直接实现！
+
+// 合并数组
+// const a = [1,2,3];
+// const b = [1,5,6];
+// const c = a.concat(b);//[1,2,3,1,5,6]
+
+// const obj1 = {
+//   a:1,
+// }
+// const obj2 = {
+//   b:1,
+// }
+// const obj = Object.assign({}, obj1, obj2);//{a:1,b:1}
+
+const a = [1,2,3];
+const b = [1,5,6];
+const c = [...new Set([...a,...b])];//[1,2,3,5,6]
+
+const obj1 = {
+  a:1,
+}
+const obj2 = {
+  b:1,
+}
+const obj = {...obj1,...obj2};//{a:1,b:1}
+
+
+// 数组去重复
+function dedupe (array) {
+    return Array.from(new Set(array))
+}
+dedupe([1,2,3,1,3,]); // [1,2,3]
