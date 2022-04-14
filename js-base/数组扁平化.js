@@ -41,3 +41,9 @@ function dedupe (array) {
     return Array.from(new Set(array))
 }
 dedupe([1,2,3,1,3,]); // [1,2,3]
+
+// 字符串去重
+// 字符串
+let str = "352255";
+let unique = [...new Set(str)].join(""); // ""
+
