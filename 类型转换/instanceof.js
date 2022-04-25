@@ -13,7 +13,7 @@ console.log('111' instanceof PrimitiveNumber) // true
 // 核心: 原型链的向上查找
 function myInstanceof(left, right){
     // 基本数据类型之间返回fasle
-    if(typeof left !== 'Object' || left === null) return false;
+    if(typeof left !== 'object' || left === null) return false;
     // Object.getPrototypeOf() 方法返回指定对象的原型（内部[[Prototype]]属性的值）。给定对象的原型。如果没有继承属性，则返回 null 。
     // getProtypeOf是Object对象自带的一个方法，能够拿到参数的原型对象
     let proto = Object.getPrototypeOf(left)
@@ -21,16 +21,31 @@ function myInstanceof(left, right){
       // 查找到尽头，还没找到
       if(proto == null) return false;
       // 找到相同的原型对象
-      if(proto == right.getPrototypeOf) return true;
+      if(proto == right.prototype) return true;
       proto = Object.getPrototypeOf(proto)
     }
 }
 
-console.log(myInstanceof(1, Number))
-console.log(Object.getPrototypeOf(1))
+console.log(myInstanceof3(new String('111'), String))
+// console.log(Object.getPrototypeOf(1), Number.prototype)
 
-function myInstanceof1(left, right){
-  if(typeof left !== Object || left === null) return false;
-
+function myInstanceof2(left, right){
+  if(typeof left !== 'object' || left === null) return false;
   let proto = Object.getPrototypeOf(left)
+  while(true){
+    if(proto == null) return false;
+    if(proto == right.prototype) return true;
+    proto = Object.getPrototypeOf(proto)
+  }
+}
+
+
+function myInstanceof3(left, right){
+  if(typeof left !== 'object' || left === null) return false;
+  let proto = Object.getPrototypeOf(left)
+  while(true){
+    if(proto == null) return false;
+    if(proto == right.prototype) return true;
+    proto = Object.getPrototypeOf(proto)
+  }
 }
