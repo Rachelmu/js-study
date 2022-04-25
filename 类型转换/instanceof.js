@@ -9,6 +9,20 @@ class PrimitiveNumber {
   }
 console.log('111' instanceof PrimitiveNumber) // true
 
+
+const primitive = type => {
+  return class {
+    static [Symbol.hasInstance](value) {
+      return typeof value === type
+    }
+  }
+}
+const primitiveString = primitive('string')
+const primitiveNumber = primitive('number')
+console.log('123' instanceof primitiveString)
+console.log(123 instanceof primitiveNumber)
+
+
 // 手动实现instacneof
 // 核心: 原型链的向上查找
 function myInstanceof(left, right){
@@ -38,14 +52,44 @@ function myInstanceof2(left, right){
     proto = Object.getPrototypeOf(proto)
   }
 }
-
-
-function myInstanceof3(left, right){
-  if(typeof left !== 'object' || left === null) return false;
-  let proto = Object.getPrototypeOf(left)
-  while(true){
-    if(proto == null) return false;
-    if(proto == right.prototype) return true;
-    proto = Object.getPrototypeOf(proto)
+const myInstanceof = (target, origin) => {
+  while (target) {
+    if (target.__proto__ === origin.prototype) {
+      return true
+    }
+    target = target.__proto__
   }
+  return false
 }
+
+function myInstanceof(target, origin) {
+  // 非object直接返回false
+  if(typeof target !== 'object' || target === null) return false;
+  
+  var proto = Object.getPrototypeOf(target);
+  while (proto) {
+    if (proto === origin.prototype) {
+      return true
+    }
+    proto = Object.getPrototypeOf(proto);
+  }
+  return false
+}
+
+function myInstanceof(L = null, R) {
+  // 对于左侧参数如果是非对象直接返回false
+  if (Object(L) !== L) return false
+  // 对于右侧参数可以认为只能为函数且不能没有Prototype属性
+  if (typeof R !== 'function' || !R.prototype) throw new TypeError('Right-hand side of 'instanceof' is not an object')
+  // 声明一个变量获取对象的__proto__
+  let link = L.__proto__
+  // 做循环（当link最终指向null，如果指向null的情况下都找不到那就返回false）
+  while (link !== null) {
+      // 如果找到说明R.prototype在L的原型链上，即返回true
+      if(link === R.prototype) return true
+      // 逐级向下
+      link = link.__proto__
+  }
+  return false
+}
+
