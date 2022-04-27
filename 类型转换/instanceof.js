@@ -52,6 +52,7 @@ function myInstanceof2(left, right){
     proto = Object.getPrototypeOf(proto)
   }
 }
+
 const myInstanceof = (target, origin) => {
   while (target) {
     if (target.__proto__ === origin.prototype) {
@@ -92,5 +93,4 @@ function myInstanceof(L = null, R) {
   }
   return false
 }
-
 
