@@ -94,3 +94,12 @@ function myInstanceof(L = null, R) {
   return false
 }
 
+function myInstanceof5(left, right){
+  if(typeof left !== 'object' || left === null) return false;
+
+  let proto = Object.getPrototypeOf(proto)
+  while(true){
+    if(proto == null) return false;
+    if(proto == right.)
+  }
+}

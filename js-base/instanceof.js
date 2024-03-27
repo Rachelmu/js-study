@@ -22,5 +22,5 @@ function getType(obj){
 	}
 	// 对于typeof返回结果是object的，再进行如下的判断，正则返回结果
 	return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'); 
-  }
+}
   
