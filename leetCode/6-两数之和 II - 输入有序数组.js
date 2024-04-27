@@ -4,6 +4,7 @@
  * @param {number} target
  * @return {number[]}
  */
+// 二分法
 var twoSum = function(numbers, target) {
     let mid = 0, left = 0, right = numbers.length - 1;
     for(let i = 0; i < numbers.length ; i++){
@@ -22,3 +23,16 @@ var twoSum = function(numbers, target) {
     }
     return [-1, -1];
 };
+
+// 双指针
+var twoSum = function(numbers, target) {
+    let min = 0, max = numbers.length - 1
+    while (min < max) {
+        if (numbers[min] + numbers[max] === target) return [min, max]
+        else if (numbers[min] + numbers[max] > target) {
+            max--
+        } else {
+            min++
+        }
+    }
+}
