@@ -32,4 +32,4 @@ const  binarySearch = (f, target) => {
         }
     }
     return low;
-};
+}
