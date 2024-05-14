@@ -34,3 +34,20 @@ var search = function (list) {
 
     return list.length - left;
 }
+
+var countNegatives = function (grid) {
+    if (grid.length === 0) return 0;
+
+    let len = grid.length;
+    let sum = 0;
+
+    for (let i = 0;  i< len; i++) {
+        sum += search(grid[r]);
+    }
+
+    return sum;
+};
+
+var search = function(list) {
+    
+}
