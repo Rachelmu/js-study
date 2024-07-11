@@ -22,7 +22,7 @@ const lowerBound = (nums, val) => {
     return l;
 }
 
-/**
+/** 循环暴力解法
  * @param {number[]} nums
  * @return {number}
  */
@@ -40,3 +40,10 @@ var maximumCount = function(nums) {
     }
     return Math.max(n, non);
 };
+
+var maximumCount = function(nums){
+    let mid, left = 0 , right = nums.length
+    while(left < right){
+        mid = Math.floor((rigth - left) / 2) + left
+    }
+}
