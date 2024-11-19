@@ -23,4 +23,38 @@ function getType(obj){
 	// 对于typeof返回结果是object的，再进行如下的判断，正则返回结果
 	return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1'); 
 }
-  
+
+
+function instacneOfMy(target, type) {
+	type = type.prototype;
+	target = target.__proto__;
+
+	while(true){
+		if(target === null){
+			return false;
+		}
+
+		if(target === type){
+			return true
+		}
+
+		target = target.__proto__;
+	}
+}
+
+function isntaceOfMy1(target, type) {
+	type =  type.prototype;
+	target = target.__proto__
+
+	while(true){
+		if(target === null){
+			return false;
+		}
+
+		if(target === type){
+			return true
+		}
+
+		target = target.__proto__
+	}
+}
