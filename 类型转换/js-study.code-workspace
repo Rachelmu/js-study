@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../study-note"
+		},
+		{
+			"path": "../../study-mu"
+		},
+		{
+			"path": "../../vue-ego"
+		},
+		{
+			"path": "../../es-module"
+		}
+	],
+	"settings": {}
+}
